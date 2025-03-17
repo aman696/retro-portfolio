@@ -1,4 +1,4 @@
-import { Briefcase, FileText, Download } from 'lucide-react';
+import { Briefcase, Github } from 'lucide-react';
 
 const experienceData = [
   {
@@ -31,11 +31,8 @@ const experienceData = [
     location: "Remote",
     dateRange: "Mar. 2025 – Present",
     details: [
-      "Designed and implemented a custom rendering engine using C++ and OpenGL.",
-      "Implemented a custom DOM parser using ANTLR and C++.",
-      "Created a custom JavaScript engine using C++ and LLVM.",
-      "Developed a custom networking stack using C++ and libcurl.",
-      "Integrated all the components to create a fully functional browser.",
+      "Set up a custom networking stack using C++ and libcurl.",
+      "Developing a custom DOM engine following the HTML5 guidelines.",
     ],
     githubLink: "https://github.com/aman696/browser",
   },
@@ -45,32 +42,34 @@ const ResumeSection = () => {
   return (
     <section id="experience" className="py-16 bg-retro-pink/20 dark:bg-gray-800/30">
       <div className="retro-container">
-        <h2 className="section-title">MY EXPERIENCE</h2>
+        {/* Section Title */}
+        <h2 className="section-title font-pixel text-retro-pink text-3xl md:text-4xl lg:text-6xl mb-10">
+          MY EXPERIENCE
+        </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {experienceData.map((exp, index) => (
-            <div key={index} className="retro-card transition hover:-translate-y-2 hover:shadow-lg">
+            <div key={index} className="retro-card transition hover:-translate-y-2 hover:shadow-lg border-2 border-black p-5 rounded-lg relative">
+              
+              {/* Header with Briefcase Icon */}
               <div className="flex items-center gap-2 mb-4">
                 <Briefcase className="h-6 w-6 text-retro-purple" />
-                <h3 className="font-pixel text-xl">{exp.role}</h3>
+                <h3 className="font-pixel text-xl md:text-2xl lg:text-4xl text-retro-teal">
+                  {exp.role}
+                </h3>
               </div>
 
+              {/* Experience Content */}
               <div className="border-l-4 border-retro-yellow pl-4 py-2">
-                <p className="font-vt323 text-lg">{exp.company}</p>
+                <p className="font-vt323 text-lg text-gray-800 dark:text-gray-300">
+                  {exp.company}
+                </p>
                 <p className="font-vt323 text-sm text-gray-600 dark:text-gray-400">
                   {exp.location} • {exp.dateRange}
                 </p>
-                {exp.githubLink && (
-                  <a
-                    href={exp.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-vt323 text-sm text-retro-purple underline hover:no-underline"
-                  >
-                    View on GitHub
-                  </a>
-                )}
-                <ul className="list-disc list-inside font-vt323 mt-2 ml-2 space-y-1">
+                
+                {/* Experience Details */}
+                <ul className="list-disc list-inside font-vt323 mt-2 ml-2 space-y-2 text-sm md:text-base lg:text-xl">
                   {exp.details.map((item, idx) => (
                     <li key={idx} className="leading-relaxed text-hero-text/90">
                       {item}
@@ -78,6 +77,21 @@ const ResumeSection = () => {
                   ))}
                 </ul>
               </div>
+
+              {/* GitHub Button */}
+              {exp.githubLink && (
+                <a 
+                  href={exp.githubLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="absolute bottom-4 left-12 flex items-center gap-2 
+                  bg-retro-purple text-white font-vt323 px-5 py-2 rounded-md 
+                  shadow-md transition-transform duration-300 hover:scale-105 hover:bg-retro-yellow"
+                >
+                  <Github className="h-5 w-5" />
+                  <span className="text-sm md:text-base">View Code</span>
+                </a>
+              )}
             </div>
           ))}
         </div>
@@ -87,4 +101,3 @@ const ResumeSection = () => {
 };
 
 export default ResumeSection;
-

@@ -44,15 +44,18 @@ const projectsData: Project[] = [
 
 const ProjectSection = () => {
   return (
-    <section id="projects" className="py-16">
+    <section id="projects" className="py-16 bg-retro-teal/20">
       <div className="retro-container">
-        <h2 className="section-title">MY PROJECTS</h2>
+        <h2 className="section-title font-pixel text-retro-pink text-3xl lg:text-5xl">MY PROJECTS</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 retro-grid">
           {projectsData.map((project, index) => (
-            <div key={index} className="retro-card transform transition hover:-translate-y-2 hover:shadow-lg">
+            <div 
+              key={index} 
+              className="retro-card transform transition hover:-translate-y-2 hover:shadow-lg border-2 border-black"
+            >
               {/* Project Image */}
-              <div className="relative mb-4 border-2 border-black overflow-hidden" style={{ height: '200px' }}>
+              <div className="relative mb-4 border-b-2 border-black overflow-hidden" style={{ height: '200px' }}>
                 <img 
                   src={project.image} 
                   alt={project.title}
@@ -60,17 +63,20 @@ const ProjectSection = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-2 left-2 right-2">
-                  <h3 className="font-pixel text-white text-lg">{project.title}</h3>
-                  <p className="text-xs text-gray-300 mt-1">
+                  <h3 className="font-pixel text-white text-lg lg:text-2xl">{project.title}</h3>
+                  <p className="text-xs lg:text-sm text-gray-300 mt-1">
                     {project.tech} • {project.year}
                   </p>
                 </div>
               </div>
               
               {/* Project Details */}
-              <ul className="list-disc list-inside space-y-2 text-xs sm:text-sm md:text-base ml-4 mt-4 flex-grow">
+              <ul className="list-disc list-inside space-y-2 text-xs sm:text-sm md:text-base lg:text-lg ml-4 mt-4">
                 {project.details.slice(0, 2).map((item, idx) => (
-                  <li key={idx} className="leading-relaxed text-hero-text/90">
+                  <li 
+                    key={idx} 
+                    className="leading-relaxed font-vt323"
+                  >
                     {item}
                   </li>
                 ))}
@@ -84,3 +90,4 @@ const ProjectSection = () => {
 }
 
 export default ProjectSection
+

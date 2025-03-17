@@ -59,8 +59,9 @@ const AboutSection = () => {
                   <Monitor className="h-6 w-6 text-retro-purple" />
                   <h3 className="font-pixel text-lg">Development</h3>
                 </div>
-                <p>Frontend: React, Next.js</p>
-                <p>Backend: Node.js, Express</p>
+                <p>Frontend: React</p>
+                <p>Backend: Fastapi,Django,Flask,</p>
+                <p>Machine Learning: PyTorch, Scikit-Learn</p>
                 <p>Database: MongoDB, MySQL</p>
               </div>
               
@@ -69,9 +70,9 @@ const AboutSection = () => {
                   <Globe className="h-6 w-6 text-retro-purple" />
                   <h3 className="font-pixel text-lg">Languages</h3>
                 </div>
-                <p>C++</p>
-                <p>JavaScript/TypeScript</p>
                 <p>Python</p>
+                <p>JavaScript/TypeScript</p>
+                <p>C++</p>
               </div>
             </div>
           </div>

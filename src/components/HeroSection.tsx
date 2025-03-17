@@ -6,7 +6,7 @@ const HeroSection = () => {
   const [showCursor, setShowCursor] = useState(true);
 
   const fullText =
-    "Hi, I'm Aman Chaturvedi. I transform complex challenges into elegant AI-driven solutions. Specializing in PyTorch, FastAPI, and React, I build intelligent systems that automate workflows and deliver meaningful insights.";
+    "Hi, I'm Aman Chaturvedi. I'm highly adaptable and thrive on tackling complex challenges, including building a web browser from scratch. I’m quick to learn and comfortable working across different domains, always eager to push boundaries and explore new solutions. If there’s a tough problem to solve, I’m ready to take it on!";
 
   useEffect(() => {
     if (text.length < fullText.length) {
@@ -29,9 +29,11 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="min-h-[90vh] flex flex-col justify-center relative bg-retro-pink/20 dark:bg-gray-800/30">
-      <div className="retro-container">
+    <section id="hero" className="min-h-[90vh] flex flex-col justify-center relative bg-retro-pink/20 dark:bg-gray-800/30">
+      <div className="retro-container relative">
+        {/* Grid Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Terminal Window */}
           <div className="terminal-window shadow-lg min-h-[300px]">
             <div className="flex items-center gap-2 mb-3">
               <div className="h-3 w-3 rounded-full bg-retro-pink"></div>
@@ -51,12 +53,17 @@ const HeroSection = () => {
                 <span className="inline-block bg-black border border-retro-teal px-2 py-1">FastAPI</span>
                 <span className="inline-block bg-black border border-retro-teal px-2 py-1">PyTorch</span>
                 <span className="inline-block bg-black border border-retro-teal px-2 py-1">React</span>
+                <span className="inline-block bg-black border border-retro-teal px-2 py-1">Javascript</span>
+                <span className="inline-block bg-black border border-retro-teal px-2 py-1">HTML/CSS</span>
+                <span className="inline-block bg-black border border-retro-teal px-2 py-1">Github</span>
+                <span className="inline-block bg-black border border-retro-teal px-2 py-1">C++</span>
                 <span className="inline-block bg-black border border-retro-teal px-2 py-1">Machine Learning</span>
-                <span className="inline-block bg-black border border-retro-teal px-2 py-1">AI Solutions</span>
+                <span className="inline-block bg-black border border-retro-teal px-2 py-1">Technology Geek</span>
               </p>
             </div>
           </div>
 
+          {/* Pixel Border Section */}
           <div className="pixel-border p-6 bg-retro-purple">
             <div className="text-center">
               <h1 className="font-press-start text-white text-3xl md:text-4xl mb-4">
@@ -67,27 +74,29 @@ const HeroSection = () => {
                 <h2 className="font-pixel text-black text-xl md:text-2xl">Machine Learning Enthusiast</h2>
               </div>
               <div className="flex justify-center gap-4">
-                <a href="/#contact" className="pixel-button">
+                <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="pixel-button">
                   CONTACT ME
-                </a>
-                <a href="/#projects" className="pixel-button">
+                </button>
+                <button onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })} className="pixel-button">
                   SEE WORK
-                </a>
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <button
-        onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
-      >
-        <ChevronDown className="h-10 w-10 text-retro-purple" />
-      </button>
+        {/* Down Arrow Button */}
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={scrollToAbout}
+            className="absolute left-1/2 transform -translate-x-1/2 translate-y-[calc(100%+1rem)] animate-bounce"
+          >
+            <ChevronDown className="h-10 w-10 text-retro-purple" />
+          </button>
+        </div>
+      </div>
     </section>
   );
 };
 
 export default HeroSection;
-

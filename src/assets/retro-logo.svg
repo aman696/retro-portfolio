@@ -1,0 +1,30 @@
+import React from 'react';
+
+const RetroLogo = () => {
+  return (
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="90" fill="none" stroke="#008080" strokeWidth="4" />
+      <circle cx="100" cy="100" r="85" fill="none" stroke="#CC5500" strokeWidth="2" />
+      <g transform="translate(70, 90)">
+        <path
+          d="M0 0 L20 10 Q25 15 30 10 T50 0 L45 -5 Q40 -10 35 -5 T20 0 Z"
+          fill="#E1AD01"
+          stroke="#E1AD01"
+          strokeWidth="1"
+        /> {/* Stylized quill */}
+      </g>
+      <text x="100" y="110" fontFamily="Bebas Neue, sans-serif" fontSize="30" fill="#008080" textAnchor="middle" fontWeight="bold">
+        J. DOE
+      </text>
+      <text x="100" y="140" fontFamily="Pacifico, cursive" fontSize="12" fill="#CC5500" textAnchor="middle">
+        Portfolio
+      </text>
+      <g>
+        <circle cx="50" cy="50" r="5" fill="#E1AD01" />
+        <circle cx="150" cy="50" r="5" fill="#E1AD01" />
+      </g>
+    </svg>
+  );
+};
+
+export default RetroLogo;
