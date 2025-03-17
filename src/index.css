@@ -1,0 +1,222 @@
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 30% 96%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 270 60% 65%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 150 45% 69%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 40 90% 88%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
+    position: relative;
+  }
+  
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, 0.05) 51%,
+      transparent 52%
+    );
+    background-size: 100% 4px;
+    z-index: 100;
+    opacity: 0.2;
+  }
+  
+  .dark body {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0);
+  }
+  
+  .dark body::before {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(255, 255, 255, 0.05) 51%,
+      transparent 52%
+    );
+  }
+}
+
+@layer components {
+  .retro-container {
+    @apply relative px-4 md:px-8 lg:px-12 py-8 mx-auto max-w-7xl;
+  }
+  
+  .section-title {
+    @apply font-press-start text-2xl md:text-3xl text-retro-purple mb-6 relative inline-block dark:text-retro-teal;
+  }
+  
+  .section-title::after {
+    content: "";
+    @apply block h-1 w-full bg-retro-teal mt-2 dark:bg-retro-yellow;
+  }
+  
+  .pixel-border {
+    @apply border-4 border-black relative dark:border-gray-300;
+    box-shadow: 5px 5px 0 0 black;
+  }
+  
+  .dark .pixel-border {
+    box-shadow: 5px 5px 0 0 rgba(255, 255, 255, 0.3);
+  }
+  
+  .pixel-button {
+    @apply font-pixel py-2 px-4 bg-retro-yellow text-black border-4 border-black relative dark:bg-retro-darkPurple dark:text-white dark:border-gray-300;
+    box-shadow: 4px 4px 0 0 black;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  
+  .dark .pixel-button {
+    box-shadow: 4px 4px 0 0 rgba(255, 255, 255, 0.3);
+  }
+  
+  .pixel-button:hover {
+    @apply bg-retro-teal dark:bg-retro-darkTeal;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 black;
+  }
+  
+  .dark .pixel-button:hover {
+    box-shadow: 2px 2px 0 0 rgba(255, 255, 255, 0.3);
+  }
+  
+  .terminal-window {
+    @apply font-vt323 bg-black text-retro-teal p-4 border-4 border-retro-gray dark:border-retro-darkTeal dark:text-retro-yellow;
+  }
+  
+  .retro-card {
+    @apply bg-white p-6 border-4 border-black relative dark:bg-gray-800 dark:border-gray-300;
+    box-shadow: 6px 6px 0 0 black;
+  }
+  
+  .dark .retro-card {
+    box-shadow: 6px 6px 0 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  .scanline {
+    @apply pointer-events-none fixed inset-0 z-50;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 10%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    height: 4px;
+    animation: scanline 4s linear infinite;
+  }
+  
+  .dark .scanline {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.3) 10%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  
+  .screen-flicker {
+    @apply pointer-events-none fixed inset-0 z-40 opacity-10;
+    animation: flicker 0.1s infinite;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.2) 100%);
+  }
+  
+  .dark .screen-flicker {
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(255,255,255,0.1) 100%);
+  }
+}
