@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import React from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { Send } from 'lucide-react';
-import emailjs from 'emailjs-com';
 
 // Reusable Input Component
 interface InputFieldProps {
@@ -8,8 +8,6 @@ interface InputFieldProps {
   id: string;
   label: string;
   placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
 }
 
@@ -18,8 +16,6 @@ const InputField: React.FC<InputFieldProps> = ({
   id, 
   label, 
   placeholder, 
-  value, 
-  onChange, 
   required = true 
 }) => {
   return (
@@ -30,10 +26,9 @@ const InputField: React.FC<InputFieldProps> = ({
       <input
         type={type}
         id={id}
+        name={id} // Ensures Formspree picks up the value
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        className="w-full border-4 border-black p-2 font-vt323 text-lg bg-yellow-100"
+        className="w-full border-4 border-black p-2 font-vt323 text-lg text-black bg-yellow-100"
         required={required}
       />
     </div>
@@ -45,8 +40,6 @@ interface TextareaFieldProps {
   id: string;
   label: string;
   placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   required?: boolean;
 }
 
@@ -54,8 +47,6 @@ const TextareaField: React.FC<TextareaFieldProps> = ({
   id, 
   label, 
   placeholder, 
-  value, 
-  onChange, 
   required = true 
 }) => {
   return (
@@ -65,10 +56,9 @@ const TextareaField: React.FC<TextareaFieldProps> = ({
       </label>
       <textarea
         id={id}
+        name={id} // Ensures Formspree reads this field
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        className="w-full border-4 border-black p-2 font-vt323 text-lg bg-yellow-100"
+        className="w-full border-4 border-black p-2 font-vt323 text-lg text-black bg-yellow-100"
         rows={5}
         required={required}
       />
@@ -77,46 +67,22 @@ const TextareaField: React.FC<TextareaFieldProps> = ({
 };
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  // Replace "xpwpwerk" with your actual Formspree form ID.
+  const [state, handleSubmit] = useForm("xpwpwerk");
 
-  const [loading, setLoading] = useState(false);
-  const [responseMsg, setResponseMsg] = useState('');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setResponseMsg('');
-
-    const serviceId = 'service_ui43wnq';
-    const userId = 'L3LkWq2RrEa8f6Had';
-
-    try {
-      const result = await emailjs.send(
-        serviceId,
-        'template_xhd9dhw',
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_email: 'caman1744@gmail.com'
-        },
-        userId
-      );
-
-      console.log(result.text);
-      setResponseMsg('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
-    } catch (error: any) {
-      console.error(error);
-      setResponseMsg('Failed to send message. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Show a thank you message on successful submission
+  if (state.succeeded) {
+    return (
+      <section id="contact" className="py-16 bg-retro-pink/20 dark:bg-gray-800/30">
+        <div className="retro-container">
+          <h2 className="section-title">GET IN TOUCH</h2>
+          <div className="retro-card">
+            <h3 className="font-pixel text-xl mb-4">Thank you for your message!</h3>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="contact" className="py-16 bg-retro-pink/20 dark:bg-gray-800/30">
@@ -132,32 +98,43 @@ const Contact: React.FC = () => {
             id="name"
             label="Name"
             placeholder="Your Name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
+          <ValidationError 
+            prefix="Name" 
+            field="name"
+            errors={state.errors}
+          />
+          
           <InputField
             type="email"
             id="email"
             label="Email"
             placeholder="Your Email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           />
+          <ValidationError 
+            prefix="Email" 
+            field="email"
+            errors={state.errors}
+          />
+          
           <TextareaField
             id="message"
             label="Message"
             placeholder="Your Message"
-            value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          />
+          <ValidationError 
+            prefix="Message" 
+            field="message"
+            errors={state.errors}
           />
 
           {/* Submit Button */}
           <button
             type="submit"
-            disabled={loading}
+            disabled={state.submitting}
             className="pixel-button w-full flex items-center justify-center gap-2"
           >
-            {loading ? (
+            {state.submitting ? (
               <span>SENDING...</span>
             ) : (
               <>
@@ -166,13 +143,6 @@ const Contact: React.FC = () => {
               </>
             )}
           </button>
-
-          {/* Response Message */}
-          {responseMsg && (
-            <div className="bg-retro-teal border-2 border-black p-3 mt-4">
-              <p className="font-vt323 text-lg">{responseMsg}</p>
-            </div>
-          )}
         </form>
       </div>
     </section>
