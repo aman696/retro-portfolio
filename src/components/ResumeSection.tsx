@@ -1,4 +1,4 @@
-import { Briefcase, Github } from 'lucide-react';
+import { Briefcase, Github, ExternalLink } from 'lucide-react';
 
 const experienceData = [
   {
@@ -24,6 +24,7 @@ const experienceData = [
       "Utilized computer vision and machine learning to analyze real-time exercise form, improving accuracy by 25%.",
       "Designed a scalable backend with Python and MySQL to process user data and deliver tailored fitness recommendations, allowing it to support over 3000 simultaneous users with the help of worker clusters.",
     ],
+    liveLink: "https://formfitai.netlify.app/",
   },
   {
     role: "Open Source Contributor",
@@ -78,20 +79,40 @@ const ResumeSection = () => {
                 </ul>
               </div>
 
-              {/* GitHub Button */}
-              {exp.githubLink && (
-                <a 
-                  href={exp.githubLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="absolute bottom-4 left-12 flex items-center gap-2 
-                  bg-retro-purple text-white font-vt323 px-5 py-2 rounded-md 
-                  shadow-md transition-transform duration-300 hover:scale-105 hover:bg-retro-yellow"
-                >
-                  <Github className="h-5 w-5" />
-                  <span className="text-sm md:text-base">View Code</span>
-                </a>
-              )}
+              {/* Project Links Container */}
+              <div className="flex flex-wrap gap-3 mt-4 justify-end">
+                {/* GitHub Button */}
+                {exp.githubLink && (
+                  <a 
+                    href={exp.githubLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-[#6E59A5] hover:bg-[#8B5CF6] text-white 
+                    font-vt323 px-4 py-2 rounded-md shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] 
+                    transition-all duration-300 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] 
+                    hover:translate-y-[-2px] border-2 border-black"
+                  >
+                    <Github className="h-5 w-5" />
+                    <span className="text-sm md:text-base">View on GitHub</span>
+                  </a>
+                )}
+                
+                {/* Live Project Button */}
+                {exp.liveLink && (
+                  <a 
+                    href={exp.liveLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-[#F97316] hover:bg-[#FDBA74] text-white
+                    font-vt323 px-4 py-2 rounded-md shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] 
+                    transition-all duration-300 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] 
+                    hover:translate-y-[-2px] border-2 border-black"
+                  >
+                    <ExternalLink className="h-5 w-5" />
+                    <span className="text-sm md:text-base">View Live Demo</span>
+                  </a>
+                )}
+              </div>
             </div>
           ))}
         </div>
